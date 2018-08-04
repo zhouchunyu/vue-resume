@@ -1,6 +1,12 @@
 <template>
   <div>
-    我是topBar
+    <div class="logg">
+      Vue Resume
+    </div>
+    <div class="actions">
+      <el-button>注册</el-button>
+      <el-button type="primary">登陆</el-button>
+    </div>
   </div>
 </template>
 
@@ -11,7 +17,4 @@ export default {
 </script>
 
 <style scoped>
-div {
-  border: 1px solid red;
-}
 </style>
