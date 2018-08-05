@@ -4,8 +4,8 @@
       <Topbar class="topbar"/>
     </header>
     <main>
-      <Editor class="editor"/>
-      <Preview class="preview"/>
+      <Editor class="editor" :resume="resume" />
+      <Preview class="preview" :resume="resume" />
     </main>
   </div>
 </template>
@@ -17,11 +17,23 @@ import Topbar from "./components/Topbar";
 
 export default {
   name: 'App',
+  data(){
+    return {
+      resume: {
+        profileInfo: [],
+        workingExp: [],
+        learningExp: [],
+        projectsExp: [],
+        contactInfo: []
+      }
+    }
+  },
   components: {
     Editor,
     Preview,
     Topbar
   }
+
 }
 </script>
 

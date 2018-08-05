@@ -2,7 +2,7 @@
   <div>
     <nav>
       <ol>
-        <li v-for="i in [0,1,2,3,4,5,6]" :class="{active: currentTab === i}" @click="currentTab = i">
+        <li v-for="i in [0,1,2,3,4,5]" :class="{active: currentTab === i}" @click="currentTab = i">
           <svg class="icon" aria-hidden="true">
             <use :xlink:href="`#icon-${icons[i]}`"></use>
           </svg>
@@ -11,42 +11,47 @@
     </nav>
     <ol class="panes">
       <li :class="{active: currentTab === 0}">
-        <h2>个人信息</h2>
-        <el-form>
-          <el-form-item class="profile_attr" label="姓名">
-            <el-input v-model="profile.name" ></el-input>
-          </el-form-item>
-          <el-form-item class="profile_attr" label="城市">
-            <el-input v-model="profile.city"></el-input>
-          </el-form-item>
-          <el-form-item class="profile_attr" label="年龄">
-            <el-input v-model="profile.age"></el-input>
-          </el-form-item>
-        </el-form>
+        <Experiences :labels="profile" title="个人信息" :experiences="resume.profileInfo"></Experiences>
       </li>
-      <li :class="{active: currentTab === 1}"><h2>工作经历</h2></li>
-      <li :class="{active: currentTab === 2}"><h2>学习经历</h2></li>
-      <li :class="{active: currentTab === 3}"><h2>项目经历</h2></li>
-      <li :class="{active: currentTab === 4}"><h2>获奖情况</h2></li>
-      <li :class="{active: currentTab === 5}"><h2>联系方式</h2></li>
+      <li :class="{active: currentTab === 1}">
+        <Experiences :labels="workingHistory" title="工作经历" add cancel :experiences="resume.workingExp"></Experiences>
+      </li>
+      <li :class="{active: currentTab === 2}">
+        <Experiences :labels="learningHistory" title="学习经历" add cancel :experiences="resume.learningExp"></Experiences>
+      </li>
+      <li :class="{active: currentTab === 3}">
+        <Experiences :labels="projects" title="项目经历" add cancel :experiences="resume.projectsExp"></Experiences>
+      </li>
+      <li :class="{active: currentTab === 4}">
+        <Experiences :labels="projects" title="联系方式" :experiences="resume.contactInfo"></Experiences>
+      </li>
     </ol>
   </div>
 </template>
 
 <script>
+import Experiences from './Experiences';
+
 export default {
   name: 'Editor',
   data(){
     return {
       currentTab: 0,
-      icons: ['credentials', 'working', 'learning', 'project', 'medal', 'contact'],
-      profile: {name: '', age: '', city: ''}
+      icons: ['credentials', 'working', 'learning', 'project', 'contact'],
+      profile: {name: '姓名', age: '年龄', city: '城市'},
+      workingHistory: {company: '公司名称', content: '工作内容'},
+      learningHistory: {school: '学校', date: '日期', master: '专业'},
+      projects: {name: '项目名称', date: '日期', content: "项目内容"},
+      contact: {phone: '手机号码', "e-mail": '邮箱地址'},
     }
   },
-  methods: {
-    onSubmit(){
-      console.log(this.profile)
+  props: {
+    resume: {
+      type: Object
     }
+  },
+  components: {
+    Experiences
   }
 }
 </script>
@@ -81,6 +86,11 @@ nav > ol > li.active {
   color: black;
 }
 
+.panes{
+  flex: 1;
+  overflow: auto;
+}
+
 .panes > li {
   display: none;
 }
@@ -94,8 +104,8 @@ nav > ol > li.active {
   padding: 16px;
 }
 
-.profile_attr {
-  padding: 16px;
+.label {
+  padding: 8px 32px;
 }
 
 </style>

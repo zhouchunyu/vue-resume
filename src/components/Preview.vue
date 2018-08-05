@@ -1,12 +1,17 @@
 <template>
   <div>
-    我是preview
+    {{resume.profileInfo[0] && resume.profileInfo[0].name}}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Preview'
+  name: 'Preview',
+  props: {
+    resume: {
+      type: Object
+    }
+  }
 }
 </script>
 
