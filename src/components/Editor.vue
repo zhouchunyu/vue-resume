@@ -66,6 +66,9 @@ export default {
   border-rddsadius: 4px;
   display: flex;
   color: white;
+  &.previewMode {
+    display: none;
+  }
 }
 
 nav > ol{

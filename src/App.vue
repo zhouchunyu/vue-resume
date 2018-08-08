@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <header>
-      <Topbar class="topbar"/>
+      <Topbar class="topbar" :class="{previewMode: previewMode}" @preview="toggle_preview()" />
     </header>
     <main>
-      <Editor class="editor" :resume="resume" />
-      <Preview class="preview" :resume="resume" />
+      <Editor class="editor" :class="{previewMode: previewMode}" :resume="resume" />
+      <Preview class="preview" :class="{previewMode: previewMode}" :resume="resume" @preview="toggle_preview()" />
     </main>
   </div>
 </template>
@@ -25,14 +25,20 @@ export default {
         learningExp: [],
         projectsExp: [],
         contactInfo: []
-      }
+      },
+      previewMode: false
     }
   },
   components: {
     Editor,
     Preview,
     Topbar
-  }
+  },
+  methods: {
+    toggle_preview() {
+      this.previewMode = !this.previewMode;
+    }
+}
 
 }
 </script>
@@ -55,6 +61,10 @@ export default {
   align-items: center;
   font-size: 20px;
   padding: 16px;
+
+  &.previewMode {
+    display: none;
+  }
 }
 
 main {
@@ -70,5 +80,11 @@ main {
   background-color: white;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
+  &.previewMode {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
+
 </style>

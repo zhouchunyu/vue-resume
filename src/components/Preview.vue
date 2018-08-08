@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @dblclick="e_preview()">
     <section class="profileInfo" v-if="resume.profileInfo[0]">
       <h1>{{resume.profileInfo[0].name || '请填写姓名'}}</h1>
       <div class="personalInfo">
@@ -22,6 +22,11 @@ export default {
   props: {
     resume: {
       type: Object
+    }
+  },
+  methods: {
+    e_preview() {
+      this.$emit('preview');
     }
   }
 }
