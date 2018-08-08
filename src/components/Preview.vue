@@ -7,8 +7,11 @@
         <span>{{`| ${resume.profileInfo[0].age || "请填写年龄"}`}}</span>
       </div>
     </section>
-    <section>
-
+    <hr>
+    <section class="projects" v-if="resume.projectsExp">
+      <div class="project" v-for="project in resume.projectsExp">
+        {{project.date || "请填写项目日期"}}{{` | ${project.name || "请填写项目名称"}` }}{{` | ${project.content || "请填写项目内容"}`}}
+      </div>
     </section>
   </div>
 </template>
