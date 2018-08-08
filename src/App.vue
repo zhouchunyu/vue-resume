@@ -26,7 +26,8 @@ export default {
         projectsExp: [],
         contactInfo: []
       },
-      previewMode: false
+      previewMode: false,
+      previewToggleCount: 0
     }
   },
   components: {
@@ -37,6 +38,10 @@ export default {
   methods: {
     toggle_preview() {
       this.previewMode = !this.previewMode;
+      if(this.previewToggleCount === 0) {
+        alert("可以双击结束preview模式");
+      }
+      this.previewToggleCount += 1;
     }
 }
 
