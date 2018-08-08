@@ -67,7 +67,7 @@ main {
 .preview{
   flex: 1;
   margin: 16px 16px 16px 8px;
-  background-color: blue;
+  background-color: white;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }

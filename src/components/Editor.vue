@@ -38,7 +38,7 @@ export default {
     return {
       currentTab: 0,
       icons: ['credentials', 'working', 'learning', 'project', 'contact'],
-      profile: {name: '姓名', age: '年龄', city: '城市'},
+      profile: {name: '姓名',city: '城市', age: '年龄'},
       workingHistory: {company: '公司名称', content: '工作内容'},
       learningHistory: {school: '学校', date: '日期', master: '专业'},
       projects: {name: '项目名称', date: '日期', content: "项目内容"},
